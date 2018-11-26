@@ -68,29 +68,6 @@ function MovieTitle({ title }) {
     </div>
   );
 }
-function MovieGenre({ genres }) {
-  return (
-    <div className="genres__wrap">
-      <div className="genres__content">
-        {genres
-          .map((genre, idx) => genre)
-          .reduce((prev, curr) => [prev, ', ', curr])}
-      </div>
-    </div>
-  );
-}
-function MovieSynopsis({ synopsis, isOpen, btnEvent }) {
-  return (
-    <div className="synopsis__wrap">
-      <div className={isOpen ? 'synopsis__content--full' : 'synopsis__content'}>
-        {synopsis}
-      </div>
-      <button className="synopsis_more" onClick={btnEvent}>
-        more
-      </button>
-    </div>
-  );
-}
 function MovieRating({ rating }) {
   var ratingStyle = {
     width: rating * 10 + '%',
@@ -122,6 +99,29 @@ function MovieRating({ rating }) {
     </div>
   );
 }
+function MovieGenre({ genres }) {
+  return (
+    <div className="genres__wrap">
+      <div className="genres__content">
+        {genres
+          .map((genre, idx) => genre)
+          .reduce((prev, curr) => [prev, ', ', curr])}
+      </div>
+    </div>
+  );
+}
+function MovieSynopsis({ synopsis, isOpen = false, btnEvent }) {
+  return (
+    <div className="synopsis__wrap">
+      <div className={isOpen ? 'synopsis__content--full' : 'synopsis__content'}>
+        {synopsis}
+      </div>
+      <button className="synopsis_more" onClick={btnEvent}>
+        more
+      </button>
+    </div>
+  );
+}
 MoviePoster.propTypes = {
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired
@@ -131,6 +131,14 @@ MovieTitle.propTypes = {
 };
 MovieRating.propTypes = {
   rating: PropTypes.number.isRequired
+};
+MovieGenre.propTypes = {
+  genres: PropTypes.array.isRequired
+};
+MovieSynopsis.propTypes = {
+  synopsis: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  btnEvent: PropTypes.func.isRequired
 };
 
 export default Movie;
