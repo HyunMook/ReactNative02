@@ -13,19 +13,22 @@ class Movie extends Component {
 
   constructor() {
     super();
+
+    this.state = {
+      synopsisOpen: false
+    };
   }
 
   componentWillMount() {
     // console.log('will mount');
   }
   componentDidMount() {
-    console.log('did mount');
-    console.log(this.props);
+    // console.log('did mount');
+    // console.log(this.props);
   }
-  _customEvent = () => {
-    // e.stopPropagation();
-    console.log('_customEvent');
-    console.log(this);
+  _toggleSynopsis = () => {
+    console.log('_toggleSynopsis');
+    this.setState({ synopsisOpen: this.state.synopsisOpen ? false : true });
   };
   render() {
     // console.log('render');
@@ -41,7 +44,8 @@ class Movie extends Component {
             <MovieGenre genres={this.props.genres} />
             <MovieSynopsis
               synopsis={this.props.synopsis}
-              btnEvent={this._customEvent}
+              isOpen={this.state.synopsisOpen}
+              btnEvent={this._toggleSynopsis}
             />
           </div>
         </div>
@@ -75,10 +79,12 @@ function MovieGenre({ genres }) {
     </div>
   );
 }
-function MovieSynopsis({ synopsis, btnEvent }) {
+function MovieSynopsis({ synopsis, isOpen, btnEvent }) {
   return (
     <div className="synopsis__wrap">
-      <div className="synopsis__content">{synopsis}</div>
+      <div className={isOpen ? 'synopsis__content--full' : 'synopsis__content'}>
+        {synopsis}
+      </div>
       <button className="synopsis_more" onClick={btnEvent}>
         more
       </button>
