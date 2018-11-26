@@ -1,43 +1,63 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Movie from './Components/Movie';
 
-class App extends Component {
-  state = {
-    movieData: []
-  };
+const MOVIE_API_URL =
+  'https://yts.ag/api/v2/list_movies.json?sort_by=download_count';
 
-  _renderMovies = () => {
-    const movies = this.state.movieData.map((movie, idx) => {
-      return <Movie key={idx} title={movie.title} poster={movie.img} />;
-    });
-    return movies;
-  };
-  render() {
-    return (
-      <div className="App">
-        {this.state.movieData ? this._renderMovies() : 'Loading...'}
-      </div>
-    );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movieData: []
+    };
   }
 
   componentDidMount() {
-    // fetch('https://yts.ag/api/v2/list_movies.json?sort_by=rating');
+    this._getMovies();
+  }
+
+  _callAPI = () => {
+    return fetch(MOVIE_API_URL)
+      .then(res => res.json())
+      .then(json => json.data.movies)
+      .catch(err => console.log(err));
+  };
+
+  _getMovies = async () => {
+    const movieData = await this._callAPI();
     this.setState({
-      movieData: [
-        {
-          title: '출국',
-          img:
-            'http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81257/81257_185.jpg'
-        },
-        {
-          title: '베테랑',
-          img:
-            'https://cdn.ppomppu.co.kr/zboard/data3/2018/0713/m_20180713101353_gvhyunuv.jpg'
-        }
-      ]
+      movieData
     });
+  };
+
+  _renderMovies = () => {
+    const movies = this.state.movieData.map(movie => {
+      console.log(movie);
+      return (
+        <Movie
+          key={movie.id}
+          title={movie.title}
+          poster={movie.medium_cover_image}
+          rating={movie.rating}
+          genres={typeof movie.genres != 'undefined' ? movie.genres : []}
+          synopsis={movie.synopsis}
+        />
+      );
+    });
+    return movies;
+  };
+
+  render() {
+    const { movieData } = this.state;
+    return (
+      <div className={movieData.length > 0 ? 'App' : 'App--loading'}>
+        {movieData.length > 0 ? this._renderMovies() : <h1>Loading...</h1>}
+      </div>
+    );
+    // return <div className="App--loading">Loading...</div>;
   }
 }
 

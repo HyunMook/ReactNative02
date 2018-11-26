@@ -1,6 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
+}
+
+body {
+  color: #444;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,4 +21,125 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.g-pa-5 {
+  padding: .5rem !important;
+}
+
+.g-pa-10 {
+  padding: 1rem !important;
+}
+
+.g-pa-15 {
+  padding: 1.5rem !important;
+}
+
+.g-mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.g-my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.img-fluid {
+  width: 100%;
+  max-width: 100%;
+}
+
+.g-color-lightgrey {
+  color: #ececec !important;
+}
+
+.g-color-yellow {
+  color: #fff000 !important;
+}
+
+/* FLEX GRID */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  margin-right: -.5rem;
+  margin-left: -.5rem;
+}
+
+.col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.col-1 {
+  flex-basis: calc(1 * (100% / 12));
+}
+
+.col-2 {
+  flex-basis: calc(2 * (100% / 12));
+}
+
+.col-3 {
+  flex-basis: calc(3 * (100% / 12));
+}
+
+.col-4 {
+  flex-basis: calc(4 * (100% / 12));
+}
+
+.col-5 {
+  flex-basis: calc(5 * (100% / 12));
+}
+
+.col-6 {
+  flex-basis: calc(6 * (100% / 12));
+}
+
+.col-7 {
+  flex-basis: calc(7 * (100% / 12));
+}
+
+.col-8 {
+  flex-basis: calc(8 * (100% / 12));
+}
+
+.col-9 {
+  flex-basis: calc(9 * (100% / 12));
+}
+
+.col-10 {
+  flex-basis: calc(10 * (100% / 12));
+}
+
+.col-11 {
+  flex-basis: calc(11 * (100% / 12));
+}
+
+.col-12 {
+  flex-basis: calc(12 * (100% / 12));
 }
