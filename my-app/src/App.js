@@ -54,7 +54,11 @@ class App extends Component {
     const { movieData } = this.state;
     return (
       <div className={movieData.length > 0 ? 'App' : 'App--loading'}>
+        <div className="container">
+        <div className="row">
         {movieData.length > 0 ? this._renderMovies() : <h1>Loading...</h1>}
+        </div>
+        </div>
       </div>
     );
     // return <div className="App--loading">Loading...</div>;

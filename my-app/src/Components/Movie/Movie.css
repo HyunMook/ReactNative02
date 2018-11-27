@@ -1,5 +1,4 @@
 .movie__block {
-  flex-basis: 50%;
   margin-left: -10px;
   margin-right: -10px;
   padding: 1rem;
@@ -24,7 +23,7 @@
 }
 
 .movie__block .poster__wrap img {
-  max-width: 400px;
+  width: 100%;
   position: relative;
   top: -1.5rem;
   box-shadow: 2px 2px 20px #444;

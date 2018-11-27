@@ -33,13 +33,13 @@ class Movie extends Component {
   render() {
     // console.log('render');
     return (
-      <div className="movie__block">
+      <div className="movie__block col-12 col-sm-6">
         <div className="block__inner">
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <MoviePoster title={this.props.title} poster={this.props.poster} />
             <MovieRating rating={this.props.rating} />
           </div>
-          <div className="col g-pa-10">
+          <div className="col-12 col-lg p-3">
             <MovieTitle title={this.props.title} />
             <MovieGenre genres={this.props.genres} />
             <MovieSynopsis
@@ -64,7 +64,7 @@ function MoviePoster({ title, poster }) {
 function MovieTitle({ title }) {
   return (
     <div className="title__wrap">
-      <h3>{title}</h3>
+      <h5>{title}</h5>
     </div>
   );
 }
@@ -116,9 +116,14 @@ function MovieSynopsis({ synopsis, isOpen = false, btnEvent }) {
       <div className={isOpen ? 'synopsis__content--full' : 'synopsis__content'}>
         {synopsis}
       </div>
-      <button className="synopsis_more" onClick={btnEvent}>
-        more
-      </button>
+      <div className="py-2">
+        <button
+          className="synopsis_more btn-block btn-outline-secondary"
+          onClick={btnEvent}
+        >
+          more
+        </button>
+      </div>
     </div>
   );
 }
